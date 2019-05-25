@@ -69,7 +69,7 @@ public class ContactAdapter extends BaseAdapter {
         holder.tvName.setText(contact.getTen());
         holder.tvNumber.setText(contact.getSo());
         byte[] hinhanh = contact.getHinh();
-        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh,0,hinhanh.length);//chuyển hình về như cũ
+        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh,0,hinhanh.length);
         holder.imgImage.setImageBitmap(bitmap);
 
        holder.imgGoi.setOnClickListener(new View.OnClickListener() {
