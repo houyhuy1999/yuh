@@ -48,7 +48,7 @@ public class TabhostActivity extends AppCompatActivity{
         lvDanhSachYeuthich = findViewById(R.id.lv_danhsachyeuthich);
 
         arrayContact = new ArrayList<>();
-        adapter = new ContactAdapter(this, R.layout.item_contact, arrayContact); //chuyển mảng  qua cho  item
+        adapter = new ContactAdapter(this, R.layout.item_contact, arrayContact); 
         lvDanhSachContact.setAdapter(adapter);   //  cài lên lisview
 
         arrayContact2 = new ArrayList<>();
@@ -83,12 +83,12 @@ public class TabhostActivity extends AppCompatActivity{
 
 
     public void getDataContact() {
-        database = new DataBase(this, "QuanLy.sqlite", null, 1);  // khởi tạo bảng dữ liệu  vs các thông số   ten , so  hinh ảnh
+        database = new DataBase(this, "QuanLy.sqlite", null, 1);  
         database.QueryData("CREATE TABLE IF NOT EXISTS Contacts(Id INTEGER PRIMARY KEY AUTOINCREMENT, Ten TEXT, So TEXT, HinhAnh BLOB )");
 
         arrayContact.clear();  // xóa  dữ liệu
 
-        Cursor cursor = database.GetData("SELECT * FROM Contacts");    //lấy dữ liệu  ra bằng phương thức GetData
+        Cursor cursor = database.GetData("SELECT * FROM Contacts");    //lấy dữ liệu  ra 
         while (cursor.moveToNext()) {
             arrayContact.add(new Contact(
                     cursor.getInt(0),
@@ -152,14 +152,14 @@ public class TabhostActivity extends AppCompatActivity{
 
     }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {  //khoi tạo menu
+    public boolean onCreateOptionsMenu(Menu menu) {  
         getMenuInflater().inflate(R.menu.add,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()== R.id.menutao){                          //  băt sự kiện menu
+        if(item.getItemId()== R.id.menutao){                         
             startActivity(new Intent(TabhostActivity.this,addcontactActivity.class));
         }if (item.getItemId()== R.id.menuyeuthich){
             startActivity(new Intent(TabhostActivity.this,DanhsachActivity.class));
@@ -193,7 +193,7 @@ public class TabhostActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Contact contact = arrayContact.get(position);
                 Intent intent = new Intent(TabhostActivity.this, chinhsuaContactActivity.class);
-                intent.putExtra("ID",contact.getId());         ///vận chuyển   dữ liệu sang chinhsuaContactActivity
+                intent.putExtra("ID",contact.getId());        
                 intent.putExtra("NAME",contact.getTen());
                 intent.putExtra("NUMBER",contact.getSo());
                 intent.putExtra("IMAGE",contact.getHinh());
