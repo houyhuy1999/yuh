@@ -54,13 +54,13 @@ public class addcontactActivity extends AppCompatActivity {
         btnThem.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) imgHinh.getDrawable(); // lấy hình
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) imgHinh.getDrawable(); 
             Bitmap bitmap = bitmapDrawable.getBitmap();
             ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArray);///chuyển hình  thành mảng byte
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArray);/// chuyển thành mảng byte
             byte[] hinhanh = byteArray.toByteArray();
 
-            TabhostActivity.database.INSERT_CONTACT(             // chèn xuống database
+            TabhostActivity.database.INSERT_CONTACT(            
                     edtTen.getText().toString().trim(),
                     edtSo.getText().toString().trim(),
                     hinhanh
@@ -98,7 +98,7 @@ public class addcontactActivity extends AppCompatActivity {
         if(requestCode == REQUEST_CODE_FILE && resultCode == RESULT_OK && data != null){
             Uri uri  =data.getData();
             try {
-                InputStream inputStream = getContentResolver().openInputStream(uri); ///   mở đường  dẫn tới hình ảnh
+                InputStream inputStream = getContentResolver().openInputStream(uri);
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 imgHinh.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
@@ -119,8 +119,7 @@ public class addcontactActivity extends AppCompatActivity {
     private void showNotification() {
         String id = "main_channel";
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);// Lấy ra dịch vụ thông báo (Một dịch vụ có sẵn của hệ thống).
-            CharSequence name = "Channel Name";
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             String description = "Channel Description";
             int importtance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel notificationChannel = new NotificationChannel(id, name, importtance);
@@ -147,8 +146,7 @@ public class addcontactActivity extends AppCompatActivity {
         notificationBuilder.setDefaults(Notification.DEFAULT_SOUND);//am thanh
         notificationBuilder.addAction(R.drawable.call,"Gọi",pending);  // nút gọi
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-        notificationManagerCompat.notify(1000,notificationBuilder.build());  // Xây dựng thông báo và gửi nó lên hệ thống.
-
+        notificationManagerCompat.notify(1000,notificationBuilder.build()); 
 
     }
     private void checkAndRequestPermissions() {  /// xin quyền gọi nhắn tin  dành cho  android  6. trở lên
