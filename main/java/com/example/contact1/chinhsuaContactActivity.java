@@ -42,18 +42,18 @@ public class chinhsuaContactActivity extends AppCompatActivity {
         edtT.setText(intent.getStringExtra("NAME"));
         edtS.setText(intent.getStringExtra("NUMBER"));  //nhận dữ liệu  từ tabhostActivity
             Bitmap bitmap = BitmapFactory.decodeByteArray(intent.getByteArrayExtra("IMAGE"),0,intent.getByteArrayExtra("IMAGE").length);
-      imgH.setImageBitmap(bitmap);///  chuyển  hình  từ mảng byte về  như cũ
+      imgH.setImageBitmap(bitmap);
 
 
 
     btnC.setOnClickListener(new View.OnClickListener() {
         @Override
-        public void onClick(View v) {  // nút update
+        public void onClick(View v) {  
 
             BitmapDrawable bitmapDrawable = (BitmapDrawable) imgH.getDrawable();
             Bitmap bitmap = bitmapDrawable.getBitmap();
             ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG,5, byteArray);  // chuyển hinh sảng kieu mảng byte
+            bitmap.compress(Bitmap.CompressFormat.JPEG,5, byteArray);  
             byte[] hinh = byteArray.toByteArray();
 
             String ten = edtT.getText().toString().trim();
@@ -65,7 +65,7 @@ public class chinhsuaContactActivity extends AppCompatActivity {
                 ContentValues values = new ContentValues();
                 values.put("Ten",ten);
                 values.put("So",so);
-                values.put("HinhAnh",hinh);///  update    dữ liệu mới  vào
+                values.put("HinhAnh",hinh);
                 database.update("Contacts", values," Id = " + intent.getIntExtra("ID",id),null );
 
             Toast.makeText(chinhsuaContactActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
@@ -75,14 +75,14 @@ public class chinhsuaContactActivity extends AppCompatActivity {
     });
     btnH.setOnClickListener(new View.OnClickListener() {
         @Override
-        public void onClick(View v) {  // nút hủy
+        public void onClick(View v) { 
             startActivity(new Intent(chinhsuaContactActivity.this,TabhostActivity.class));
         }
     });
 
     imgH.setOnClickListener(new View.OnClickListener() {
         @Override
-        public void onClick(View v) {    // nút  hình
+        public void onClick(View v) {   
             Intent intent  = new Intent(Intent.ACTION_PICK);
             intent.setType("image/*");
             startActivityForResult(intent,REQUEST_CODE_FILE);
@@ -95,7 +95,7 @@ public class chinhsuaContactActivity extends AppCompatActivity {
         if(requestCode == REQUEST_CODE_FILE && resultCode == RESULT_OK && data != null){
             Uri uri  =data.getData();
             try {
-                InputStream inputStream = getContentResolver().openInputStream(uri);  //mở đường dẫn  tới ảnh
+                InputStream inputStream = getContentResolver().openInputStream(uri);  
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 imgH.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
