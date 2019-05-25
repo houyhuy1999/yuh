@@ -24,7 +24,7 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
     public void QueryData(String sql){
-        SQLiteDatabase database = getWritableDatabase();   // truy vấn
+        SQLiteDatabase database = getWritableDatabase();   
         database.execSQL(sql);
     }
     public void INSERT_CONTACT(String ten, String so, byte[] hinh){
