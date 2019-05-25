@@ -24,7 +24,7 @@ public class DanhsachActivity extends AppCompatActivity {
         lvDanhSachLuaChon= findViewById(R.id.lv_danhsachluachon);
 
         adapter2 =new ContactAdapter2(this,R.layout.item_contact2,TabhostActivity.arrayContact);
-        lvDanhSachLuaChon.setAdapter(adapter2);  //danh sách lựa chọn contact
+        lvDanhSachLuaChon.setAdapter(adapter2);  
 
         lvDanhSachLuaChon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
