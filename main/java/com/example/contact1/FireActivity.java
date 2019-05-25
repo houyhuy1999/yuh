@@ -41,33 +41,33 @@ public class FireActivity extends AppCompatActivity {
             edtEmail.setText(sharedPreferences.getString("email", ""));
             edtPassword.setText(sharedPreferences.getString("pass", ""));
         }
-        btnLogin.setOnClickListener(new View.OnClickListener() {// hai edit
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sharedPreferences = getSharedPreferences("datalogin", MODE_PRIVATE);
-                String E = sharedPreferences.getString("email", "");  //lấy  dữ liệu  trong  sharedPreferences
+                String E = sharedPreferences.getString("email", "");  //lấy  dữ liệu  trong  sharedPreference
                 String P = sharedPreferences.getString("pass", "");
                 String email = edtEmail.getText().toString().trim();
                 String pass = edtPassword.getText().toString().trim();
-                if ((email.equals(E)) && (pass.equals(P))) {    //  so sánh   dữ liệu
-                    Intent call = new Intent(FireActivity.this,TabhostActivity.class);// đúng
+                if ((email.equals(E)) && (pass.equals(P))) {  
+                    Intent call = new Intent(FireActivity.this,TabhostActivity.class);
                     startActivity(call);
                 } else {
                     counter--;
                     Toast.makeText(FireActivity.this, " Password or Name of you the wrong , please input again", Toast.LENGTH_SHORT).show();
-                    tvInfor.setText("No of attempts remaining: " + String.valueOf(counter));       // sai
+                    tvInfor.setText("No of attempts remaining: " + String.valueOf(counter));       
                     if (counter == 0) {
                         btnLogin.setEnabled(false);
                     }
-                  }      //hộp checkbox
-                if(email.equals(E) && pass.equals(P)){                  //so sánh dữ liệu
+                  }      
+                if(email.equals(E) && pass.equals(P)){                 
                     if (cbGhinho.isChecked()) {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putBoolean("checked",true);   //chèn   checked = true
+                        editor.putBoolean("checked",true);   
                         editor.apply();
-                    }else{// sai
+                    }else{
                         SharedPreferences.Editor editor =sharedPreferences.edit();
-                        editor.remove("checked"); // xóa cheked
+                        editor.remove("checked"); 
                         editor.apply();}
                 }
             } });
